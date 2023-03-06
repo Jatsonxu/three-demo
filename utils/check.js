@@ -1,11 +1,13 @@
 // WebGL兼容性检查（WebGL compatibility check）
 
-function checkWebGLAvailable() {
+
+export const checkWebGLAvailable = (WebGL, callBack, element = "container") => {
     if (WebGL.isWebGLAvailable()) {
         // Initiate function or other initializations here
-        animate();
+        callBack(); //  animate();
+
     } else {
         const warning = WebGL.getWebGLErrorMessage();
-        document.getElementById('container').appendChild(warning);
+        document.getElementById(element).appendChild(warning);
     }
 }
