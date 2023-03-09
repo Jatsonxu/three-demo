@@ -1,4 +1,7 @@
 #!/bin/bash
+#git add .
+#git commit -am"update code before createBranch"
+#git push origin main
 git checkout main
 git pull origin main
 read -p "请输入你的分支名字:" BranchName
