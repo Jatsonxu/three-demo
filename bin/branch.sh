@@ -14,3 +14,4 @@ echo Create New Branch Success: $BranchName
 # 基于master创建新分支并同步到远程分支
 
 # webpack/0.0.1 第一次打包尝试
+# webpack/0.0.2 webpack的安装和基本打包
