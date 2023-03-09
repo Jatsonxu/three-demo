@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "mode": "debug",
   "scripts": {
-    "dev": "webpack --version"
+    "dev": "webpack --version",
+    "build": "webpack --mode production"
   },
   "dependencies": {
-    "webpack": "^5.75.0",
+    "webpack": "^5.76.0",
     "webpack-cli": "^5.0.1"
   }
 }
