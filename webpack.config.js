@@ -51,19 +51,51 @@ module.exports = {
             // 瞧一瞧,看一看,官方文档
             // https://webpack.js.org/guides/asset-modules/#root
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                use: {
-                    loader: "file-loader",
-                    options: {
-                        // 默认使用 ES6 模块解析,将其关闭,启用 CommonJS模块
-                        // 不配置这个 HTML 文件中的图片路径会错误
-                        esModule: false,
-                        name: "img/[name]_[hash:6].[ext]"
-                    },
+                test: /\.(jpe?g|png|gif|svg)$/,
+                // type:"asset/resource", // file-loader
+                // type:"asset/inline", //  data URI
+                // type:"asset/resource", // raw-loader
+                type: "asset", //最常用|limit
+                // 生成选项
+                generator: {
+                    // filename: "img/[name]_[hash:6].[ext]",
+                    // 名字是包含点的所以不用再·了
+                    filename: "img/[name]_[hash:6][ext]",
                 },
-
-                type: 'javascript/auto'// 不加这个配置,一张图片打包后悔生成两张
+                parser: {
+                    // 数据 URL 的条件
+                    dataUrlCondition: {
+                        maxSize: 120 * 1024, // maxSize以下打包成 DataURI
+                    }
+                }
             }
+            // {
+            //     test: /\.(jpe?g|png|gif|svg)$/i,
+            //     use: {
+            //         loader: "url-loader",
+            //         options: {
+            //             esModule: false,
+            //             limit: 120 * 1024, //byte
+            //             name: '[hash:10].[ext]'
+            //         },
+            //     },
+            //     type: 'javascript/auto'// 不加这个配置,一张图片打包后悔生成两张
+            // },
+            // {
+            //     test: /\.(jpe?g|png|gif|svg)$/i,
+            //     use: {
+            //         loader: "file-loader",
+            //         options: {
+            //             // 默认使用 ES6 模块解析,将其关闭,启用 CommonJS模块
+            //             // 不配置这个 HTML 文件中的图片路径会错误
+            //             esModule: false,
+            //             name: "img/[name]_[hash:6].[ext]"
+            //         },
+            //     },
+            //
+            //     type: 'javascript/auto'// 不加这个配置,一张图片打包后悔生成两张
+            // },
+
         ]
     }
 }

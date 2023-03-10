@@ -1,7 +1,7 @@
 import "../css/style.css"
 import "../css/title.less"
 import "../css/image.css"
-import Kid from "../img/kid.jpeg"
+import Cat2 from "../img/cat2.png"
 
 const divEl = document.createElement("div")
 divEl.className = "title"
@@ -11,7 +11,7 @@ const bgDivEl = document.createElement("div")
 bgDivEl.className = "image-bg"
 
 const imgEl = document.createElement("img")
-imgEl.src = Kid
+imgEl.src = Cat2
 
 document.body.appendChild(divEl)
 document.body.appendChild(bgDivEl)
