@@ -1,0 +1,10 @@
+.title {
+    color: red;
+    font-weight: bold;
+    font-size: 30px;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9jc3Mvc3R5bGUuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksVUFBVTtJQUNWLGlCQUFpQjtJQUNqQixlQUFlO0lBQ2YseUJBQWlCO09BQWpCLHNCQUFpQjtZQUFqQixpQkFBaUI7QUFDckIiLCJmaWxlIjoiZW5kLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRsZSB7XG4gICAgY29sb3I6IHJlZDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBmb250LXNpemU6IDMwcHg7XG4gICAgdXNlci1zZWxlY3Q6IG5vbmU7XG59XG4iXX0= */

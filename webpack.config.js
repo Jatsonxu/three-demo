@@ -14,20 +14,40 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/, // 根据正则表达式进行匹配,以.css 结尾的
-                // 1.loader 的写法(语法糖)
-                // loader: "css-loader", // 解释解释: 所有匹配到以.css 结尾的文件都用ss-loader解析
-                // 2.desugar
-                // use: "css-loader" // 这样写是可以的,
-                // 但是有时加载 css 一个 loader 搞不定呀,
-                // 需要多个 loader 所以这个地方可以用数组加载多个 loader
-                // 还需要把解析后的 css 添加到 style 标签里,这不过分吧~
+                test: /\.css$/,
                 use: [
                     // loader 加载顺序, 从下往上
                     "style-loader",
                     "css-loader",
+                    "postcss-loader"
+                    // {
+                    //     loader: "postcss-loader",
+                    //     options: {
+                    //         postcssOptions: {
+                    //             plugins: [
+                    //                 require("autoprefixer")
+                    //             ]
+                    //         }
+                    //     }
+                    // }
                 ]
-            }
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "less-loader",
+                ]
+            },
+            {
+                test: /\.(less|css)$/,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "less-loader",
+                ]
+            },
         ]
     }
 }
