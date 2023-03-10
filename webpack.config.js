@@ -23,11 +23,9 @@ module.exports = {
                 // 需要多个 loader 所以这个地方可以用数组加载多个 loader
                 // 还需要把解析后的 css 添加到 style 标签里,这不过分吧~
                 use: [
-                    // "css-loader", 这样也行,但是我还想传参
-                    // 直接整个完整地吧
-                    {
-                        loader: "css-loader"
-                    }
+                    // loader 加载顺序, 从下往上
+                    "style-loader",
+                    "css-loader",
                 ]
             }
         ]
