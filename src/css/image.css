@@ -1,0 +1,7 @@
+.image-bg {
+    width: 200px;
+    height: 200px;
+    background-image: url("../img/kid.jpeg");
+    background-size: 100%;
+    margin: 20px;
+}
