@@ -5,6 +5,8 @@ const {DefinePlugin} = require("webpack")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 console.log(__dirname)
 module.exports = {
+    mode: "development",
+    devtool:"source-map",
     // 入口
     entry: "./src/main.js",
     // 出口
