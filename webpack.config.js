@@ -35,7 +35,17 @@ module.exports = {
         // contentBase: "./public",//
         hot: true,
         compress: false,
-        host: "0.0.0.0"
+        host: "0.0.0.0",
+        proxy: {
+            "api": {
+                target: "http://localhiost:8888",
+                pathRewrite: {
+                    "^/api": ""
+                },
+                secure: false,
+                changeOrigin: true
+            }
+        }
     },
     module: {
         rules: [
