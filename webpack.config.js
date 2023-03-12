@@ -22,21 +22,26 @@ module.exports = {
 
             {
                 test: /\.js$/,
-                use: {
-                    // 配置代码转换的~
-                    loader: "babel-loader",
-                    options: {
-                        // plugins:[
-                        //     "@babel/plugin-transform-arrow-functions",
-                        //     "@babel/plugin-transform-block-scoping",
-                        //     //....
-                        // ]
-                        presets: [
-                            "@babel/preset-env"
-                        ]
-                    }
-                }
+                loader: "babel-loader"
             },
+
+            // {
+            //     test: /\.js$/,
+            //     use: {
+            //         // 配置代码转换的~
+            //         loader: "babel-loader",
+            //         options: {
+            //             // plugins:[
+            //             //     "@babel/plugin-transform-arrow-functions",
+            //             //     "@babel/plugin-transform-block-scoping",
+            //             //     //....
+            //             // ]
+            //             presets: [
+            //                 "@babel/preset-env"
+            //             ]
+            //         }
+            //     }
+            // },
 
 
             {
