@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 console.log(__dirname)
 module.exports = {
     mode: "development",
-    devtool:"source-map",
+    devtool: "source-map",
     // 入口
     entry: "./src/main.js",
     // 出口
@@ -19,6 +19,26 @@ module.exports = {
     },
     module: {
         rules: [
+
+            {
+                test: /\.js$/,
+                use: {
+                    // 配置代码转换的~
+                    loader: "babel-loader",
+                    options: {
+                        // plugins:[
+                        //     "@babel/plugin-transform-arrow-functions",
+                        //     "@babel/plugin-transform-block-scoping",
+                        //     //....
+                        // ]
+                        presets: [
+                            "@babel/preset-env"
+                        ]
+                    }
+                }
+            },
+
+
             {
                 test: /\.css$/,
                 use: [
