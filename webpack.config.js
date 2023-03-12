@@ -1,5 +1,7 @@
 const path = require('path')
 const {CleanWebpackPlugin} = require("clean-webpack-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const {DefinePlugin} = require("webpack")
 console.log(__dirname)
 module.exports = {
     // 入口
@@ -10,7 +12,7 @@ module.exports = {
         // __dirname:当前文件路径,so config 文件最好放在根目录~
         path: path.resolve(__dirname, "./build"),
         // 打包后的文件名
-        filename: "bundle.js"
+        filename: "js/bundle.js"
     },
     module: {
         rules: [
@@ -63,5 +65,12 @@ module.exports = {
         // 注入
         // 根据 hook 生命周期执行
         new CleanWebpackPlugin(), // build 前清理打包过的文件
+        new HtmlWebpackPlugin({
+            template: "./public/index.html",
+            title: "ThreeJS 2023"
+        }),
+        new DefinePlugin({
+            BASE_URL: JSON.stringify("./"),
+        })
     ]
 }
