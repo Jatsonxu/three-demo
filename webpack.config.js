@@ -1,6 +1,8 @@
 const path = require('path')
-console.log(__dirname)
+
 module.exports = {
+    mode: "development",
+    devtool: "source-map",
     // 入口
     entry: "./src/main.js",
     // 出口
@@ -10,5 +12,8 @@ module.exports = {
         path: path.resolve(__dirname, "./build"),
         // 打包后的文件名
         filename: "bundle.js"
+    },
+    module:{
+        rules:[]
     }
 }
