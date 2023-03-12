@@ -29,12 +29,13 @@ module.exports = {
         // __dirname:当前文件路径,so config 文件最好放在根目录~
         path: path.resolve(__dirname, "./dist"),
         // 打包后的文件名
-        filename: "js/build.js"
+        filename: "js/build.js",
     },
     devServer: {
         // contentBase: "./public",//
         hot: true,
         compress: false,
+        host: "0.0.0.0"
     },
     module: {
         rules: [
