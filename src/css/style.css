@@ -4,4 +4,16 @@
     font-weight: bold;
     font-size: 30px;
     user-select: none;
+    color: #fff;
+}
+
+@font-face {
+    font-family: 'NotoSansCJK';
+    src: url('../font/siyuan/NotoSansCJK-Regular-1.otf');
+}
+
+.font-test {
+    font-family: "NotoSansCJK";
+    color: red;
+    font-size: 20px;
 }

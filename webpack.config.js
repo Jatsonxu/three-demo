@@ -68,7 +68,7 @@ module.exports = {
                         maxSize: 120 * 1024, // maxSize以下打包成 DataURI
                     }
                 }
-            }
+            },
             // {
             //     test: /\.(jpe?g|png|gif|svg)$/i,
             //     use: {
@@ -95,6 +95,27 @@ module.exports = {
             //
             //     type: 'javascript/auto'// 不加这个配置,一张图片打包后悔生成两张
             // },
+            // 字体
+            {
+                test: /\.(eot|otf|ttf|woff2?)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        // outputPath: "font",
+                        // filename: "font/[name]_[hash:6].[ext]"
+
+                        // name 包含文件夹, filename 不包含
+                        name: "font/[name]_[hash:6].[ext]"
+                    }
+                }
+            },
+            {
+                test: /\.(eot|otf|ttf|woff2?)$/,
+                type: "asset/resource",
+                generator: {
+                    filename: "font/[name]_[hash:6].[ext]"
+                }
+            }
 
         ]
     }
