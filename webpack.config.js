@@ -1,4 +1,5 @@
 const path = require('path')
+const {CleanWebpackPlugin} = require("clean-webpack-plugin")
 console.log(__dirname)
 module.exports = {
     // 入口
@@ -56,6 +57,11 @@ module.exports = {
             }
 
         ]
-
-    }
+    },
+    plugins: [
+        // 一个一个的插件对象
+        // 注入
+        // 根据 hook 生命周期执行
+        new CleanWebpackPlugin(), // build 前清理打包过的文件
+    ]
 }
