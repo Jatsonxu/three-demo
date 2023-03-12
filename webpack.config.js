@@ -2,6 +2,7 @@ const path = require('path')
 const {CleanWebpackPlugin} = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const {DefinePlugin} = require("webpack")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 console.log(__dirname)
 module.exports = {
     // 入口
@@ -64,6 +65,7 @@ module.exports = {
         // 一个一个的插件对象
         // 注入
         // 根据 hook 生命周期执行
+        // 插件在这里没有顺序, 根据Hook内部机制调用的
         new CleanWebpackPlugin(), // build 前清理打包过的文件
         new HtmlWebpackPlugin({
             template: "./public/index.html",
@@ -71,6 +73,20 @@ module.exports = {
         }),
         new DefinePlugin({
             BASE_URL: JSON.stringify("./"),
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: "public", //从哪里复制
+                    to: './',// 复制到那里去
+                    globOptions: {
+                        // 需要忽略哪些文件
+                        ignore: [
+                            "**/index.html"
+                        ]
+                    }
+                }
+            ]
         })
     ]
 }
