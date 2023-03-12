@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const {DefinePlugin, BannerPlugin} = require("webpack")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const {VueLoaderPlugin} = require("vue-loader")
-const TerserPlugin = require("terser-webpack-plugin");
+
 
 const handler = (percentage, message, ...args) => {
     // e.g. Output each progress message directly to the console:
@@ -33,7 +33,8 @@ module.exports = {
     },
     devServer: {
         // contentBase: "./public",//
-        hot: true
+        hot: true,
+        compress: false,
     },
     module: {
         rules: [
@@ -101,12 +102,12 @@ module.exports = {
     // },
     plugins: [
 
-        new webpack.ProgressPlugin(handler),
-        new webpack.DllPlugin({
-            context: __dirname,
-            name: '[name]_[fullhash]',
-            path: path.join(__dirname, 'manifest.json'),
-        }),
+        // new webpack.ProgressPlugin(handler),
+        // new webpack.DllPlugin({
+        //     context: __dirname,
+        //     name: '[name]_[fullhash]',
+        //     path: path.join(__dirname, 'manifest.json'),
+        // }),
         new BannerPlugin({
             banner: '0.0.1',
             // banner: (yourVariable) => {
