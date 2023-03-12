@@ -1,14 +1,28 @@
 const path = require('path')
+const webpack = require("webpack")
 const {CleanWebpackPlugin} = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const {DefinePlugin} = require("webpack")
+const {DefinePlugin, BannerPlugin} = require("webpack")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const {VueLoaderPlugin} = require("vue-loader")
+const TerserPlugin = require("terser-webpack-plugin");
+
+const handler = (percentage, message, ...args) => {
+    // e.g. Output each progress message directly to the console:
+    console.info(percentage, message, ...args);
+};
+
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const {extendDefaultPlugins} = require("svgo");
+
+// require("webpack-dev-server")
 module.exports = {
+    target: "web",
     mode: "development",
+    // watch: true, //使用 webpack-dev-server 就不需要设置它了
     devtool: "source-map",
     // 入口
-    entry: "./src/main.js",
+    entry: "/src/main.js",
     // 出口
     output: {
         // 这里需要绝对路径
@@ -16,6 +30,10 @@ module.exports = {
         path: path.resolve(__dirname, "./dist"),
         // 打包后的文件名
         filename: "js/build.js"
+    },
+    devServer: {
+        // contentBase: "./public",//
+        hot: true
     },
     module: {
         rules: [
@@ -51,7 +69,8 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/,
+                // test: /\.(jpe?g|png|gif|svg)$/,
+                test: /\.(jpe?g|png|gif|svg)$/i,
                 type: "asset",
                 generator: {
                     filename: "img/[name]_[hash:6][ext]",
@@ -60,7 +79,7 @@ module.exports = {
                     dataUrlCondition: {
                         maxSize: 120 * 1024,
                     }
-                }
+                },
             },
 
             {
@@ -73,7 +92,27 @@ module.exports = {
 
         ]
     },
+    // optimization: {
+    //     minimize: true,
+    //     minimizer: [new TerserPlugin({
+    //         // test: /\.js(\?.*)?$/i,
+    //         // test: /\.(jpe?g|png|gif|svg)$/,
+    //     })],
+    // },
     plugins: [
+
+        new webpack.ProgressPlugin(handler),
+        new webpack.DllPlugin({
+            context: __dirname,
+            name: '[name]_[fullhash]',
+            path: path.join(__dirname, 'manifest.json'),
+        }),
+        new BannerPlugin({
+            banner: '0.0.1',
+            // banner: (yourVariable) => {
+            //     return `yourVariable: ${yourVariable}`;
+            // },
+        }),
         new VueLoaderPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
