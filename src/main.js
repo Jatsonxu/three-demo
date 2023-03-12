@@ -1,5 +1,11 @@
 import {createApp} from "vue";
 
-const app = createApp({})
+const divEl = document.createElement("div")
+divEl.innerHTML = "Hello Document Element"
+document.body.appendChild(divEl)
 
-app.mount("")
+import App from "./vue/App.vue"
+
+const app = createApp(App)
+console.log(App)
+app.mount("#app")

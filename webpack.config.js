@@ -3,6 +3,7 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const {DefinePlugin} = require("webpack")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const {VueLoaderPlugin} = require("vue-loader")
 module.exports = {
     mode: "development",
     devtool: "source-map",
@@ -19,8 +20,18 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+            },
+            {
                 test: /\.js$/,
-                loader: "babel-loader"
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    },
+                },
             },
             {
                 test: /\.css$/,
@@ -63,9 +74,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new VueLoaderPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            // template: "./public/index.html",
+            template: "./public/index.html",
             title: "webpack+vue"
         }),
         new DefinePlugin({
